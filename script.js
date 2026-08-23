@@ -167,36 +167,47 @@ async function getSuggestions(query) {
         return;
     }
 
-    const url = `https://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${query}`;
+    try {
 
-    const response = await fetch(url);
+        const url = `/api/search?query=${encodeURIComponent(query)}`;
 
-    const data = await response.json();
+        const response = await fetch(url);
 
-    suggestions.innerHTML = "";
+        const data = await response.json();
 
-    data.forEach(function (city) {
+        suggestions.innerHTML = "";
 
-    const suggestion = document.createElement("div");
+        if (!Array.isArray(data)) {
+            return;
+        }
 
-    suggestion.classList.add("suggestion");
+        data.forEach(function(city) {
 
-    suggestion.textContent = `${city.name}, ${city.country}`;
+            const suggestion = document.createElement("div");
 
-    suggestion.addEventListener("click", function () {
+            suggestion.classList.add("suggestion");
 
-    cityInput.value = city.name;
+            suggestion.textContent = `${city.name}, ${city.country}`;
 
-    suggestions.innerHTML = "";
+            suggestion.addEventListener("click", function() {
 
-    getWeather(city.name);
+                cityInput.value = city.name;
 
-});
+                suggestions.innerHTML = "";
 
-    suggestions.appendChild(suggestion);
+                getWeather(city.name);
 
-});
+            });
 
+            suggestions.appendChild(suggestion);
+
+        });
+
+    } catch (error) {
+
+        console.error("Suggestion error:", error);
+
+    }
 }
 
 // 👇 Put it HERE
