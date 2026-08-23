@@ -306,7 +306,13 @@ function saveRecentSearch(city) {
     displayRecentSearches();
 }
 
+cityInput.addEventListener("input", function() {
 
+    const query = cityInput.value.trim();
+
+    getSuggestions(query);
+
+});
 // Run when the page loads
 displayRecentSearches();
 
