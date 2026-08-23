@@ -45,8 +45,13 @@ h1{
     margin-bottom:25px;
 }
 
-.search-box input{
+.search-input-container{
+    position:relative;
     flex:1;
+}
+
+.search-box input{
+    width:100%;
     padding:15px;
     border:1px solid #ddd;
     border-radius:12px;
@@ -72,22 +77,43 @@ h1{
     background:#4338CA;
 }
 
-/* Suggestions */
+
+/* =========================
+   CITY SUGGESTIONS
+========================= */
 
 #suggestions{
+    position:absolute;
+    top:calc(100% + 5px);
+    left:0;
     width:100%;
+
     background:white;
-    border-radius:8px;
-    margin-top:5px;
-    margin-bottom:15px;
+    border-radius:10px;
+
     overflow:hidden;
-    box-shadow:0 4px 10px rgba(0,0,0,.15);
+
+    box-shadow:0 6px 18px rgba(0,0,0,.18);
+
+    z-index:9999;
 }
 
 .suggestion{
-    padding:12px;
+    padding:13px 15px;
+
     cursor:pointer;
+
+    color:#222;
+    font-size:15px;
+    font-weight:600;
+
     border-bottom:1px solid #eee;
+
+    transition:background .2s ease;
+}
+
+.suggestion:last-child{
+    border-bottom:none;
 }
 
 .suggestion:hover{
@@ -97,6 +123,7 @@ h1{
 #suggestions:empty{
     display:none;
 }
+
 
 /* Location button */
 
@@ -117,6 +144,7 @@ h1{
     background:#059669;
 }
 
+
 /* Messages */
 
 #error-message{
@@ -135,6 +163,7 @@ h1{
     color:#4F46E5;
     margin-bottom:15px;
 }
+
 
 /* Current weather */
 
@@ -169,6 +198,7 @@ h1{
     margin:10px auto;
 }
 
+
 /* Weather details */
 
 .weather-details{
@@ -196,6 +226,7 @@ h1{
     font-weight:bold;
 }
 
+
 /* Weather backgrounds */
 
 body.sunny{
@@ -222,6 +253,7 @@ body.clear-night{
     background:linear-gradient(135deg,#141E30,#243B55);
 }
 
+
 /* Forecast */
 
 .forecast-card{
@@ -230,6 +262,7 @@ body.clear-night{
     border-radius:15px;
     padding:18px 10px;
     text-align:center;
+
     transition:transform .2s ease, box-shadow .2s ease;
 }
 
@@ -261,36 +294,40 @@ body.clear-night{
     margin:5px 0;
     color:#222;
 }
+
+
 /* Recent Searches */
-.recent-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 
-    padding: 12px 15px;
-    margin-bottom: 8px;
+.recent-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 10px;
+    padding:12px 15px;
+    margin-bottom:8px;
+
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:10px;
 
     color:black;
-    font-size: 15px;
-    font-weight: 700;
+    font-size:15px;
+    font-weight:700;
 
-    cursor: pointer;
+    cursor:pointer;
 
-    transition: all 0.2s ease;
+    transition:all 0.2s ease;
 }
 
-.recent-item:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateX(4px);
+.recent-item:hover{
+    background:rgba(255,255,255,0.2);
+    transform:translateX(4px);
 }
 
-.recent-item:active {
-    transform: scale(0.98);
+.recent-item:active{
+    transform:scale(0.98);
 }
+
 
 /* Mobile */
 
@@ -318,6 +355,10 @@ body.clear-night{
     .search-box input,
     .search-box button,
     #location-btn{
+        width:100%;
+    }
+
+    .search-input-container{
         width:100%;
     }
 
