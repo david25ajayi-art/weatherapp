@@ -16,11 +16,18 @@
     <!-- Search -->
     <div class="search-box">
 
-        <input
-            type="text"
-            id="city-input"
-            placeholder="Enter city..."
-        >
+        <div class="search-input-container">
+
+            <input
+                type="text"
+                id="city-input"
+                placeholder="Enter city..."
+                autocomplete="off"
+            >
+
+            <div id="suggestions"></div>
+
+        </div>
 
         <button id="search-btn">
             Search
@@ -28,11 +35,10 @@
 
     </div>
 
-    <!-- City Suggestions -->
-    <div id="suggestions"></div>
+    <!-- Recent Searches -->
     <div id="recent-searches">
-    <h3>Recent Searches</h3>
-    <div id="recent-list"></div>
+        <h3>Recent Searches</h3>
+        <div id="recent-list"></div>
     </div>
 
     <!-- Location -->
@@ -51,7 +57,6 @@
             City
         </h2>
 
-        <!-- Weather Icon -->
         <img id="weather-icon" src="" alt="Weather Icon">
 
         <p id="weather-description">
@@ -61,7 +66,6 @@
         <h1 id="temperature">
             --°C
         </h1>
-
 
         <!-- Weather Details -->
         <div class="weather-details">
