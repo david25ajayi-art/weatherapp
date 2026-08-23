@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🌦 Weather App</h1>
+
+    <!-- Search -->
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="city-input"
+            placeholder="Enter city..."
+        >
+
+        <button id="search-btn">
+            Search
+        </button>
+
+    </div>
+
+    <!-- City Suggestions -->
+    <div id="suggestions"></div>
+    <div id="recent-searches">
+    <h3>Recent Searches</h3>
+    <div id="recent-list"></div>
+    </div>
+
+    <!-- Location -->
+    <button id="location-btn">
+        📍 Use My Location
+    </button>
+
+    <p id="error-message"></p>
+    <p id="loading-message">Loading...</p>
+
+
+    <!-- Current Weather -->
+    <div class="weather-card">
+
+        <h2 id="city-name">
+            City
+        </h2>
+
+        <!-- Weather Icon -->
+        <img id="weather-icon" src="" alt="Weather Icon">
+
+        <p id="weather-description">
+            Weather
+        </p>
+
+        <h1 id="temperature">
+            --°C
+        </h1>
+
+
+        <!-- Weather Details -->
+        <div class="weather-details">
+
+            <div class="detail-card">
+                <h3>💧 Humidity</h3>
+                <p id="humidity">--</p>
+            </div>
+
+            <div class="detail-card">
+                <h3>💨 Wind</h3>
+                <p id="wind-speed">--</p>
+            </div>
+
+            <div class="detail-card">
+                <h3>🌡️ Feels Like</h3>
+                <p id="feels-like">--</p>
+            </div>
+
+            <div class="detail-card">
+                <h3>🧭 Pressure</h3>
+                <p id="pressure">--</p>
+            </div>
+
+            <div class="detail-card">
+                <h3>👁️ Visibility</h3>
+                <p id="visibility">--</p>
+            </div>
+
+            <div class="detail-card">
+                <h3>☀️ UV Index</h3>
+                <p id="uv-index">--</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- 3-Day Forecast -->
+    <div class="forecast-container">
+
+        <h2>3-Day Forecast</h2>
+
+        <div id="forecast"></div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
