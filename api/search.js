@@ -1,43 +1,35 @@
-export default async function handler(request) {
-    const { searchParams } = new URL(request.url);
-    const query = searchParams.get("query");
+export default async function handler(request, response) {
+    const query = request.query.query;
 
     if (!query) {
-        return new Response(
-            JSON.stringify({ error: "Search query is required" }),
-            {
-                status: 400,
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }
-        );
+        return response.status(400).json({
+            error: "Search query is required"
+        });
     }
 
     const apiKey = process.env.WEATHER_API_KEY;
 
-    try {
-        const url = `https://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${encodeURIComponent(query)}`;
-
-        const response = await fetch(url);
-        const data = await response.json();
-
-        return new Response(JSON.stringify(data), {
-            status: response.status,
-            headers: {
-                "Content-Type": "application/json"
-            }
+    if (!apiKey) {
+        return response.status(500).json({
+            error: "WEATHER_API_KEY is missing"
         });
+    }
+
+    try {
+        const url =
+            `https://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${encodeURIComponent(query)}`;
+
+        const weatherResponse = await fetch(url);
+        const data = await weatherResponse.json();
+
+        return response.status(weatherResponse.status).json(data);
 
     } catch (error) {
-        return new Response(
-            JSON.stringify({ error: "Something went wrong" }),
-            {
-                status: 500,
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }
-        );
+        console.error("Search API error:", error);
+
+        return response.status(500).json({
+            error: "Something went wrong",
+            details: error.message
+        });
     }
 }
