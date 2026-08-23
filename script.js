@@ -40,9 +40,9 @@ async function getWeather(city){
 
     try{
 
-   const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3&aqi=no`;
+ const url = `/api/weather?city=${encodeURIComponent(city)}`;
 
-   const response = await fetch(url);
+const response = await fetch(url);
 
 const data = await response.json();
 
